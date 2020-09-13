@@ -1,0 +1,42 @@
+@model IEnumerable<ToDoList.Models.TodoList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="ro">
+        <div class="col-md-6">
+            <div class="jumbotron" style="padding: 45px 0px">
+                <h4 class="text-center">My To-do List</h4>
+            </div>
+            <form class="input-group" asp-action="Create" asp-controller="ToDo" method="POST">
+                <input name="Title" type="text" class="form-control"/>
+                <div class="input-group-addon hover-cursor">
+                    <button type="submit"><i  class="fa fa-plus-circle"></i></button>
+                </div>
+            </form>
+            <div style="margin: 5px 0px">
+                <ul class="list-group">
+                    @foreach (var item in Model)
+                    {
+                        <li class="list-group-item">
+                            <a href="@Url.Action("Edit", new {Id = @item.Id})" >
+                                <span class="hover-cursor">
+                                    <i class="@(item.IsChecked? "fa fa-lg fa-check-circle-o": "fa fa-lg fa-circle-thin")"
+                                        ></i>
+                                </span>
+                            </a>
+                            @item.Title
+                            <a href="@Url.Action("Delete", new {Id = @item.Id})" >
+                                <span class="hover-cursor text-danger pull-right">
+                                    <i class="fa fa-trash-o fa-lg"></i>
+                                </span>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
