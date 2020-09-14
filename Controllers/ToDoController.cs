@@ -22,7 +22,7 @@ namespace ToDoList.Controllers{
 
         [HttpPost]
         public async Task<ActionResult> Create(string Title){
-            Console.WriteLine(Title);
+            //Console.WriteLine(Title);
             TodoList item = new TodoList();
             item.Title = Title;
             item.IsChecked = false;
@@ -32,7 +32,7 @@ namespace ToDoList.Controllers{
         }
 
         public async Task<ActionResult> Edit(int Id){
-            Console.WriteLine(Id);
+            //Console.WriteLine(Id);
             TodoList item = await context.ToDoLists.FindAsync(Id);
             item.IsChecked = !item.IsChecked;
             context.Update(item);
@@ -41,7 +41,7 @@ namespace ToDoList.Controllers{
         }
 
         public async Task<ActionResult> Delete(int Id){
-            Console.WriteLine(Id);
+            //Console.WriteLine(Id);
             TodoList item = await context.ToDoLists.FindAsync(Id);
             context.Remove(item);
             await context.SaveChangesAsync();
